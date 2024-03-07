@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { RegisterRecipeUseCase } from "../specs/cornucopia/recipe/use-cases/register-recipe.use-case";
-import { Recipe } from "../specs/cornucopia/recipe/recipe";
+import { Recipe } from "../specs/cornucopia/recipe/recipe.aggregate";
 import { RegisterRecipe } from "../specs/cornucopia/recipe/commands/register-recipe.command";
 import { PgEventStore } from "./store/pg.event-store";
 
@@ -12,6 +12,7 @@ app.get('/new-recipe', async (c) => {
         new RegisterRecipe('Caramel'),
         PgEventStore
     );
+
     await usecase.run();
     return c.json({ message: 'Recipe registered' });
 });

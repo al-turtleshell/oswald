@@ -1,9 +1,10 @@
-import { AggregateRoot } from "../../../src/aggregate";
+import { AggregateRoot } from "../../../src/aggregate/aggregate";
 import type { FoodRegistered } from "./events/food-registered.event";
 import { Event } from "../../../src/event/event";
 import type { RegisterFood } from "./commands/register-food.command";
 
 class Food extends AggregateRoot {
+
     private _name: string | null = null;
     private _type: string | null = null;
     constructor() {

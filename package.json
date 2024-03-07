@@ -17,6 +17,7 @@
     "@types/uuid": "^9.0.8",
     "amqplib": "^0.10.3",
     "class-transformer": "^0.5.1",
+    "dotenv": "^16.4.5",
     "hono": "^4.0.10",
     "uuid": "^9.0.1"
   }

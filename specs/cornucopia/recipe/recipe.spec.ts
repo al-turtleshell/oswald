@@ -1,11 +1,11 @@
 import { expect, test, describe } from "bun:test";
 import { beforeEach, afterEach } from "bun:test";
 
-import { Recipe } from "./recipe";
+import { Recipe } from "./recipe.aggregate";
 import { RegisterRecipeUseCase } from "./use-cases/register-recipe.use-case";
 import { RegisterRecipe } from "./commands/register-recipe.command";
 import { RecipeRegistered } from "./events/recipe-registered.event";
-import { Food } from "../food/food";
+import { Food } from "../food/food.aggregate";
 import { RegisterFoodUseCase } from "../food/use-cases/register-food.use-case";
 import { RegisterFood } from "../food/commands/register-food.command";
 import { AddIngredientRecipeUseCase } from "./use-cases/add-ingredient-recipe.use-case";
@@ -83,7 +83,7 @@ describe("Add ingredient", async () => {
         expect(recipe01.ingredients[1].food.name).toBe('Tomato');
     });
 
-    test.only('should failed to add ingredient', async () => {
+    test('should failed to add ingredient', async () => {
         const pasta = new Food();
         const registerPastaUseCase = new RegisterFoodUseCase(pasta, new RegisterFood('Spaghetti', 'Pasta'), eventStore);
         await registerPastaUseCase.run();

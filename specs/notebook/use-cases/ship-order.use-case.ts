@@ -1,7 +1,7 @@
 import type { EventStore } from "../../../src/event/event-store";
 import { UseCase } from "../../../src/use-case";
 import type { ShipOrder } from "../commands/ship-order";
-import type { Order } from "../order";
+import type { Order } from "../order.aggregate";
 
 class ShipOrderUseCase extends UseCase {
     constructor(

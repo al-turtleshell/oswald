@@ -1,4 +1,4 @@
-import type { AggregateRoot } from "./aggregate";
+import type { AggregateRoot } from "./aggregate/aggregate";
 import type { Command } from "./command";
 import { AggregateMissingError } from "./error/AggregateMissingError";
 import { AggregateVersionMismatchError } from "./error/AggregateVersionMismatchError";
@@ -26,12 +26,12 @@ abstract class UseCase {
             const aggregateId = this._command.aggregateId;
 
             if (aggregateId) {
-                const [events, version] = await this._eventStore.loadEventStream(aggregateId);
+                const [events, version, snapshot] = await this._eventStore.loadEventStream(aggregateId);
                 if (events.length === 0) {
                     throw new AggregateMissingError(this._aggregate.constructor.name, aggregateId) 
                 }
        
-                await this._aggregate.loadFromHistory(events, aggregateId, version as string);
+                await this._aggregate.loadFromHistory(events, aggregateId, version as string, snapshot);
                 
                 if (this._command.aggregateVersion !== this._aggregate.version) {
                     throw new AggregateVersionMismatchError(this._aggregate.constructor.name, aggregateId, this._command.aggregateVersion as string, this._aggregate.version as string);

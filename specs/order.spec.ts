@@ -1,7 +1,7 @@
 import { expect, test, describe } from "bun:test";
 import { beforeEach, afterEach } from "bun:test";
 
-import { Order } from "./notebook/order";
+import { Order } from "./notebook/order.aggregate";
 import { PlaceOrder } from "./notebook/commands/place-order";
 import { OrderPlaced } from "./notebook/events/order-placed.event";
 
@@ -15,7 +15,7 @@ import { PgEventStore } from "../src/store/pg.event-store";
 import { PrismaClient } from '@prisma/client'
 import { AggregateVersionMismatchError } from "../src/error/AggregateVersionMismatchError";
 const prisma = new PrismaClient()
-const eventStore = new PgEventStore(prisma);
+const eventStore = PgEventStore
 
 beforeEach(async () => {
     await prisma.eventStore.deleteMany();

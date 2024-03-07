@@ -1,6 +1,6 @@
 import { expect, test, describe } from "bun:test";
 import { beforeEach, afterEach } from "bun:test";
-import { Food } from "./food";
+import { Food } from "./food.aggregate";
 import { PrismaClient } from '@prisma/client'
 import { PgEventStore } from "../../../src/store/pg.event-store";
 import { RegisterFoodUseCase } from "./use-cases/register-food.use-case";
@@ -10,7 +10,7 @@ import { CommandValidationError } from "../../../src/error/CommandValidationErro
 
 
 const prisma = new PrismaClient()
-const eventStore = new PgEventStore(prisma);
+const eventStore = PgEventStore
 
 beforeEach(async () => {
     await prisma.eventStore.deleteMany();

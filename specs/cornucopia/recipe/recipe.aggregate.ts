@@ -1,13 +1,14 @@
-import { AggregateRoot } from "../../../src/aggregate";
+import { AggregateRoot } from "../../../src/aggregate/aggregate";
 import type { RegisterRecipe } from "./commands/register-recipe.command";
 import type { RecipeRegistered } from "./events/recipe-registered.event";
 import { Event } from "../../../src/event/event";
 import { IngredientAddedFailed, type IngredientAdded } from "./events/ingredient-added.event";
-import { Food } from "../food/food";
+import { Food } from "../food/food.aggregate";
 
 import type { AddIngredient } from "./commands/add-ingredient.command";
 
 class Recipe extends AggregateRoot {
+
     private _name: string | null = null;
     private _ingredients: { food: Food }[] = [];
 
@@ -38,7 +39,7 @@ class Recipe extends AggregateRoot {
 
         return await command.execute();
     }
-
+    
     get name(): string | null {
         return this._name;
     }

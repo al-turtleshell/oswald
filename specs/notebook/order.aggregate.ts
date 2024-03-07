@@ -1,4 +1,4 @@
-import { AggregateRoot } from "../../src/aggregate";
+import { AggregateRoot } from "../../src/aggregate/aggregate";
 import type { Command } from "../../src/command";
 import { OrderPlaced, OrderPlacedFailed } from "./events/order-placed.event";
 import { Event } from "../../src/event/event";

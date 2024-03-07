@@ -1,5 +1,5 @@
 import { UseCase } from "../../../../src/use-case";
-import type { Recipe } from "../recipe";
+import type { Recipe } from "../recipe.aggregate";
 import type { EventStore } from "../../../../src/event/event-store";
 
 import type { AddIngredient } from "../commands/add-ingredient.command";

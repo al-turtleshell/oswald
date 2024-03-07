@@ -1,8 +1,9 @@
 import { OutboxState } from "@prisma/client";
 import prisma from "../../prisma/prisma";
-import type { AggregateRoot } from "../aggregate";
+import type { AggregateRoot } from "../aggregate/aggregate";
 import { EventCodec } from "../event/event-codec";
 import { v4 as uuid } from 'uuid';
+import { config } from "../config";
 
 async function appendEventsToStream(aggregate: AggregateRoot): Promise<void> {
 
@@ -41,6 +42,8 @@ async function appendEventsToStream(aggregate: AggregateRoot): Promise<void> {
                 state: OutboxState.Pending
             }))
         })
+
+        
     })
     
     aggregate.markChangesAsCommitted(newVersion);

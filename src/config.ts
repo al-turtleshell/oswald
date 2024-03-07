@@ -1,7 +1,10 @@
+import dotenv from "dotenv";
+dotenv.config();
 
 const config = {
+    event_snapshot_interval: 2,
     rabbitmq: {
-        url: 'amqps://mdxykvnk:ebDQfr3LgWo3B4soKpaS96LmZ5wk8i7Z@stingray.rmq.cloudamqp.com/mdxykvnk'
+        url: process.env.AMQP_URL || "amqp://localhost:5672",
     }
 };
 

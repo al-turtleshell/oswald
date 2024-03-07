@@ -2,11 +2,12 @@ import prisma from "../../prisma/prisma";
 import { EventCodec } from "../event/event-codec";
 import { Event } from "../event/event";
 
+
 async function loadEventStream(aggregateId: string): Promise<[Event[], string] | [[], null]> {
-    
+
     const events = await prisma.eventStore.findMany({
         where: {
-            aggregateId: aggregateId
+                aggregateId: aggregateId,
         }
     });
 

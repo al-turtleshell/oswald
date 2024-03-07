@@ -1,7 +1,7 @@
 import type { EventStore } from "../../../../src/event/event-store";
 import { UseCase } from "../../../../src/use-case";
 import type { RegisterFood } from "../commands/register-food.command";
-import type { Food } from "../food";
+import type { Food } from "../food.aggregate";
 
 class RegisterFoodUseCase extends UseCase {
     constructor(

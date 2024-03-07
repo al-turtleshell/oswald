@@ -1,7 +1,7 @@
-import type { Command } from "./command";
-import { CommandMissingError } from "./error/CommandMissingError";
-import { Event } from "./event/event";
-import { loadEventStream } from "./store/load-event-stream";
+import type { Command } from "../command";
+import { CommandMissingError } from "../error/CommandMissingError";
+import { Event } from "../event/event";
+import { loadEventStream } from "../store/load-event-stream";
 
 abstract class AggregateRoot {
     protected _id: string | null = null;
@@ -65,6 +65,7 @@ abstract class AggregateRoot {
     }
 
     async loadFromHistory(history: Event[], id: string, version: string): Promise<void> {
+
         for(let i = 0; i < history.length; i++) {
             await this.apply(history[i], false)
         }
@@ -96,6 +97,7 @@ abstract class AggregateRoot {
         await entity.loadFromHistory(events, entityId, version as string);
         return entity;
     }
+
 }
 
 export { AggregateRoot }

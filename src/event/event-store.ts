@@ -1,4 +1,4 @@
-import type { AggregateRoot } from "../aggregate";
+import type { AggregateRoot } from "../aggregate/aggregate";
 import { Event } from "./event";
 
 export interface EventStore {
